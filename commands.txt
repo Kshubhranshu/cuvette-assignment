@@ -1,4 +1,0 @@
-[DATABASE MIGRATION] npm run migrate
-[INSTALL ALL DEPENDENCIES] npm run install
-[START REACT APP] npm run startApp
-[START NODE SERVER] npm run startServer
