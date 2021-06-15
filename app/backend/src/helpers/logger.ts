@@ -1,10 +1,8 @@
-import * as DotEnv from 'dotenv';
+require('dotenv').config(); 
 import * as Winston from 'winston';
 
 class ApiLogger {
   public static newInstance(): Winston.Logger {
-    DotEnv.config();
-
     const consoleTransport = new Winston.transports.Console({
       format: Winston.format.combine(
         Winston.format.colorize(),

@@ -30,11 +30,10 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const DotEnv = __importStar(require("dotenv"));
+require('dotenv').config();
 const Winston = __importStar(require("winston"));
 class ApiLogger {
     static newInstance() {
-        DotEnv.config();
         const consoleTransport = new Winston.transports.Console({
             format: Winston.format.combine(Winston.format.colorize(), Winston.format.timestamp(), Winston.format.align(), Winston.format.printf(info => {
                 const { timestamp, level, message } = info, args = __rest(info, ["timestamp", "level", "message"]);

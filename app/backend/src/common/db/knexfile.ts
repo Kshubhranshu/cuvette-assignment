@@ -1,6 +1,5 @@
-import * as DotEnv from 'dotenv';
+require('dotenv').config(); 
 import knexSnakeCaseMapper from 'objection';
-DotEnv.config();
 
 /* in production env all the credentials will intialized from .env  */
 export default {

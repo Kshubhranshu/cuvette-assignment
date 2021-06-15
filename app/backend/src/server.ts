@@ -1,5 +1,5 @@
+require('dotenv').config(); 
 import * as Hapi from '@hapi/hapi';
-import * as DotEnv from 'dotenv';
 import Logger from './helpers/logger';
 import Router from './routes/index';
 
@@ -8,8 +8,6 @@ export default class Server {
 
     public static async start() {
         try {
-            DotEnv.config();
-
             Server.instance = new Hapi.Server({
                 port: process.env.PORT,
                 host: process.env.HOST,

@@ -31,15 +31,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require('dotenv').config();
 const Hapi = __importStar(require("@hapi/hapi"));
-const DotEnv = __importStar(require("dotenv"));
 const logger_1 = __importDefault(require("./helpers/logger"));
 const index_1 = __importDefault(require("./routes/index"));
 class Server {
     static start() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                DotEnv.config();
                 Server.instance = new Hapi.Server({
                     port: process.env.PORT,
                     host: process.env.HOST,

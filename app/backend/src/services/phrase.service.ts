@@ -12,7 +12,6 @@ export default class PhraseService<T> {
         toolkit: Hapi.ResponseToolkit
     ): Promise<Hapi.ResponseObject> {
         try {
-
             let resultPhrases = await this.processFileLineByLine(filePath);
             resultPhrases = resultPhrases.filter(element => element.phrase);
             const dbData = await phraseDao.getAllPhrase();
@@ -40,9 +39,7 @@ export default class PhraseService<T> {
         }
     };
 
-    private async processFileLineByLine(filePath: string): Promise<{id: number, phrase:string}[]> {
-        let lineCount: number = 0;
-
+    private async processFileLineByLine(filePath: string): Promise<{ id: number, phrase: string }[]> {
         const promiseReadFile = await fs.readFileSync(filePath, 'utf8');
 
         return promiseReadFile.split('\n')

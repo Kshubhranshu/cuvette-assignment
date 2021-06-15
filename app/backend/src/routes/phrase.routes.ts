@@ -1,8 +1,7 @@
+require('dotenv').config(); 
 import * as Hapi from '@hapi/hapi';
 import FileParserController from '../controllers/phrase.controller';
 import validate from '../helpers/validate';
-import * as DotEnv from 'dotenv';
-DotEnv.config();
 
 export default class FileParseRoutes {
     public async register(server: Hapi.Server): Promise<void> {
