@@ -65,7 +65,6 @@ class PhraseService {
     processFileLineByLine(filePath) {
         return __awaiter(this, void 0, void 0, function* () {
             let lineCount = 0;
-            let result = [];
             const promiseReadFile = yield fs_1.default.readFileSync(filePath, 'utf8');
             return promiseReadFile.split('\n')
                 .map((element, index) => {

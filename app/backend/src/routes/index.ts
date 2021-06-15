@@ -3,7 +3,7 @@ import FileParseRoutes from './phrase.routes';
 import Logger from '../helpers/logger';
 
 export default class Router {
-    public static async loadRoutes(server: Hapi.Server): Promise<any> {
+    public static async loadRoutes(server: Hapi.Server): Promise<void> {
         try {
             await new FileParseRoutes().register(server);
         } catch (error) {

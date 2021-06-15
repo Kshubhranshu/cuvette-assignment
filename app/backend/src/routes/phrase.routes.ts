@@ -5,7 +5,7 @@ import * as DotEnv from 'dotenv';
 DotEnv.config();
 
 export default class FileParseRoutes {
-    public async register(server: Hapi.Server): Promise<any> {
+    public async register(server: Hapi.Server): Promise<void> {
         const baseUrl = process.env.BASE_URL || '/api/v1';
         const controller = new FileParserController();
 

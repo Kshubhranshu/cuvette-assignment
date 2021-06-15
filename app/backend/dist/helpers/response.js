@@ -15,6 +15,7 @@ function createResponse(request, { value = null, boom = null }) {
             data.push(...value);
         }
         else {
+            data.push(value);
             data = value;
         }
     }

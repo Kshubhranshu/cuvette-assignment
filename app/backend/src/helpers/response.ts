@@ -43,6 +43,7 @@ export default function createResponse<T>(
     if (Array.isArray(value)) {
       data.push(...value);
     } else {
+      data.push(value);
       data = value;
     }
   }

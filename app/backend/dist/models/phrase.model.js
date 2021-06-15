@@ -8,7 +8,6 @@ class PhraseModel extends objection_1.Model {
     static get jsonSchema() {
         return {
             type: 'object',
-            required: ['id', 'phrase'],
             properties: {
                 id: { type: 'integer' },
                 phrase: { type: 'text', minLength: 1, maxLength: 1000 }

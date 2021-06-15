@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const objection_1 = require("objection");
 const dbconfig_1 = __importDefault(require("../common/db/dbconfig"));
 const phrase_model_1 = __importDefault(require("../models/phrase.model"));
 dbconfig_1.default.setConnection();
@@ -24,7 +25,7 @@ class PhraseDao {
     }
     insertPhrase(id, phrase) {
         return __awaiter(this, void 0, void 0, function* () {
-            const dbReq = { id, phrase };
+            const dbReq = { id: id, phrase: phrase };
             const dbResult = yield phrase_model_1.default.query()
                 .insert(dbReq);
         });
@@ -33,15 +34,17 @@ class PhraseDao {
         return __awaiter(this, void 0, void 0, function* () {
             const dbResult = yield phrase_model_1.default.query()
                 .deleteById(id);
-            yield this.updateAllPhraseId(id);
+            if (dbResult > 0) {
+                yield this.updateAllPhraseId(id);
+            }
             return dbResult;
         });
     }
     updateAllPhraseId(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const dbReq = { id: id - 1 };
+            const dbReq = { id: objection_1.raw('id - 1') };
             const dbResult = yield phrase_model_1.default.query()
-                .update(dbReq)
+                .patch(dbReq)
                 .where('id', '>', id);
         });
     }

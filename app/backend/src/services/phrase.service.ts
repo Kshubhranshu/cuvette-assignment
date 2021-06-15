@@ -10,7 +10,7 @@ export default class PhraseService<T> {
     public async getAllPhrase(
         request: Hapi.Request,
         toolkit: Hapi.ResponseToolkit
-    ): Promise<any> {
+    ): Promise<Hapi.ResponseObject> {
         try {
 
             let resultPhrases = await this.processFileLineByLine(filePath);
@@ -40,9 +40,8 @@ export default class PhraseService<T> {
         }
     };
 
-    private async processFileLineByLine(filePath: string): Promise<any[]> {
+    private async processFileLineByLine(filePath: string): Promise<{id: number, phrase:string}[]> {
         let lineCount: number = 0;
-        let result: any[] = [];
 
         const promiseReadFile = await fs.readFileSync(filePath, 'utf8');
 
@@ -55,18 +54,18 @@ export default class PhraseService<T> {
     public async writePhraseIntoFile(
         request: Hapi.Request,
         toolkit: Hapi.ResponseToolkit
-    ): Promise<any> {
+    ): Promise<Hapi.ResponseObject> {
         try {
             type Payload = {
                 phrase: string;
             };
             const reqPayload: Payload = request.payload as Payload;
-            const phrase: string =  reqPayload.phrase + '\n';
+            const phrase: string = reqPayload.phrase + '\n';
 
             await fs.appendFileSync(filePath, phrase);
 
             const result = await this.countFileLines(filePath);
-            
+
             if (result) {
                 await phraseDao.insertPhrase(result, reqPayload.phrase);
             }
@@ -97,7 +96,7 @@ export default class PhraseService<T> {
     public async deletePhraseById(
         request: Hapi.Request,
         toolkit: Hapi.ResponseToolkit
-    ): Promise<any> {
+    ): Promise<Hapi.ResponseObject> {
         try {
             const lineNumber: number = (request.params.line_number);
             const updatedLineNumber: number = lineNumber - 1;
