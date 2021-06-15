@@ -1,4 +1,3 @@
-# Two Skill Backend
 
 ## Contributing
 
