@@ -1,0 +1,36 @@
+{
+  "name": "cuvette-api-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "startServer": "npm run build && node dist/index.js",
+    "build": "tsc -p .",
+    "migrate": "npx knex migrate:latest --knexfile src/common/db/knexfile.ts",
+    "test": "echo testing node server"
+  },
+  "author": "Kshubhranshu",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^20.1.4",
+    "@hapi/joi": "^17.1.1",
+    "bluebird": "^3.7.2",
+    "dotenv": "^10.0.0",
+    "knex": "^0.95.6",
+    "objection": "^2.2.15",
+    "pg": "^8.6.0",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.10",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.12",
+    "@types/hapi": "^18.0.5",
+    "@types/hapi__hapi": "^20.0.8",
+    "@types/hapi__joi": "^17.1.4",
+    "@types/helmet": "^4.0.0",
+    "@types/node": "^15.12.2",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}
